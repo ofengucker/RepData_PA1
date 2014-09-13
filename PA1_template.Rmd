@@ -10,10 +10,6 @@ Not necessary here as dataset is in repository. But some step usually needed to 
 
 myWD <- setwd("set your working directory here").
 
-Load library data.table in case it's needed
-```{r}
-            library(data.table)
-```
 
 ## Loading and preprocessing the data
 Unzip and Load data
@@ -230,11 +226,12 @@ Make 2-level factor for weekend and weekdays
 act2$wend <- as.factor(ifelse(weekdays( act2$newdate) %in% c("Saturday","Sunday"), "weekend", "weekday")) 
 ```
 
-Aggreagate data. Calculate means across intervals and across weekend/weekdays.  
+Aggreagate data. Calculate means across intervals and across weekend/weekdays.    
 ```{r}
 mean5.2 <- aggregate(steps~interval+wend, data=act2, mean)
 ```
-Make panel plot
+Make final panel plot for number of steps by Time interval for
+weekends and weekdays separately.  
 ```{r}
 require(lattice)
 x.tick.number <- 100

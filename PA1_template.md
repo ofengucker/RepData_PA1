@@ -11,11 +11,6 @@ Not necessary here as dataset is in repository. But some step usually needed to 
 
 myWD <- setwd("set your working directory here").
 
-Load library data.table in case it's needed
-
-```r
-            library(data.table)
-```
 
 ## Loading and preprocessing the data
 Unzip and Load data
@@ -99,7 +94,7 @@ print(xs,
 ```
 
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Sat Sep 13 19:56:31 2014 -->
+<!-- Sat Sep 13 21:48:39 2014 -->
 <table border=1>
 <caption align="top"> Mean and Median number of steps taken each day </caption>
 <tr> <th>  </th> <th> Mean Steps </th> <th> Median Steps </th>  </tr>
@@ -148,7 +143,7 @@ print(x5,
 ```
 
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Sat Sep 13 19:56:32 2014 -->
+<!-- Sat Sep 13 21:48:39 2014 -->
 <table border=1>
 <caption align="top"> Maximum number of steps taken across all 5-minute intervals </caption>
 <tr> <th>  </th> <th> interval </th> <th> steps </th>  </tr>
@@ -260,7 +255,7 @@ print(xs2,
 ```
 
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Sat Sep 13 19:56:32 2014 -->
+<!-- Sat Sep 13 21:48:40 2014 -->
 <table border=1>
 <caption align="top"> Mean and Median number of steps taken each day for imputed data table </caption>
 <tr> <th>  </th> <th> Mean Steps </th> <th> Median Steps </th>  </tr>
@@ -276,7 +271,7 @@ print(xs,
 ```
 
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Sat Sep 13 19:56:32 2014 -->
+<!-- Sat Sep 13 21:48:40 2014 -->
 <table border=1>
 <caption align="top"> Mean and Median number of steps taken each day </caption>
 <tr> <th>  </th> <th> Mean Steps </th> <th> Median Steps </th>  </tr>
@@ -300,11 +295,13 @@ Make 2-level factor for weekend and weekdays
 act2$wend <- as.factor(ifelse(weekdays( act2$newdate) %in% c("Saturday","Sunday"), "weekend", "weekday")) 
 ```
 
-Aggreagate data. Calculate means across intervals and across weekend/weekdays.  
+Aggreagate data. Calculate means across intervals and across weekend/weekdays.    
 
 ```r
 mean5.2 <- aggregate(steps~interval+wend, data=act2, mean)
 ```
+Make final panel plot for number of steps by Time interval for
+weekends and weekdays separately.  
 
 ```r
 require(lattice)
@@ -332,4 +329,4 @@ xyplot(steps ~ interval | wend,
        )
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png) 
